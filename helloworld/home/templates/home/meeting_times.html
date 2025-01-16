@@ -1,0 +1,25 @@
+{% extends "home/base.html" %}
+
+{% block title %} Available Meeting Times {% endblock %}
+
+{% block body %}
+<h1 class="text-4xl font-semibold mb-8">Available Meeting Times</h1>
+
+<div class="bg-white p-8 rounded shadow-md">
+    <h1 class="text-2xl font-bold mb-6">Select a Time</h1>
+    <form action="#" method="POST" class="space-y-6">
+        {% csrf_token %}
+        <div class="space-y-4">
+            {% for slot in free_slots %}
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Available Slot</label>
+                    <input type="radio" name="selected_slot" value="{{ slot.0 }}" id="slot_{{ forloop.counter }}">
+                    <label for="slot_{{ forloop.counter }}">{{ slot.0 }} to {{ slot.1 }}</label>
+                </div>
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-primary-focus">Confirm Meeting Time</button>
+    </form>
+</div>
+{% endblock %}
