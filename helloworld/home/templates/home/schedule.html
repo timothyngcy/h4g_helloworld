@@ -4,4 +4,66 @@
 
 {% block body %}
 <h1 class="text-4xl font-semibold mb-8">Schedule</h1>
+
+
+<div class="bg-white p-8 rounded shadow-md">
+    <h1 class="text-2xl font-bold mb-6">Schedule a Meeting</h1>
+    <form action="#" method="POST" class="space-y-4">
+        <!-- Meeting Name -->
+        <div>
+            <label for="meeting-name" class="block text-sm font-medium text-gray-700">Meeting Name</label>
+            <input type="text" id="meeting-name" name="meeting_name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm" placeholder="Enter meeting name" required>
+        </div>
+
+        <!-- Date Range -->
+        <div>
+            <label for="date-range" class="block text-sm font-medium text-gray-700">Any Date From</label>
+            <div class="flex space-x-2">
+                <input type="date" id="start-date" name="start_date" class="mt-1 block w-1/2 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm" required>
+                <input type="date" id="end-date" name="end_date" class="mt-1 block w-1/2 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm" required>
+            </div>
+        </div>
+
+        <!-- Time Range -->
+        <div>
+            <label for="time-range" class="block text-sm font-medium text-gray-700">Any Time From</label>
+            <div class="flex space-x-2">
+                <input type="time" id="start-time" name="start_time" class="mt-1 block w-1/2 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm" required>
+                <input type="time" id="end-time" name="end_time" class="mt-1 block w-1/2 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm" required>
+            </div>
+        </div>
+
+        <!-- Duration -->
+        <div>
+            <label for="duration" class="block text-sm font-medium text-gray-700">Duration of Meeting (in Hours)</label>
+            <input type="number" id="duration" name="duration" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm" placeholder="Enter duration" required min="0.5" step="0.5">
+        </div>
+
+        <!-- Invite People -->
+        <div>
+            <label for="invite-people" class="block text-sm font-medium text-gray-700">People to Invite</label>
+            <div id="email-inputs" class="space-y-2">
+                <input type="email" name="emails[]" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm" placeholder="Enter email" required>
+            </div>
+            <button type="button" id="add-email" class="mt-2 text-primary underline text-sm">+ Add another email</button>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+            <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-primary-focus">Send Invite</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Add additional email input
+    document.getElementById('add-email').addEventListener('click', () => {
+        const emailInput = document.createElement('input');
+        emailInput.type = 'email';
+        emailInput.name = 'emails[]';
+        emailInput.className = 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm';
+        emailInput.placeholder = 'Enter email';
+        document.getElementById('email-inputs').appendChild(emailInput);
+    });
+</script>
 {% endblock %}
